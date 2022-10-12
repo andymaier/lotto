@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -83,16 +84,24 @@ public class MainActivity extends AppCompatActivity {
            lottoSearch.add(1);
            lottoSearch.add(1);
            lottoSearch.add(1);
-            for (int digit = 7; digit > 0; digit--) {
+            for (int digit = 5; digit >= 0; digit--) {
                for (int i = 1; i < 50; i++) {
-                    if(lottoSearch.equals(numbers)) {
-                        System.out.println("FOUND: ");
-                        for (int zahl: numbers) {
-                            System.out.println(zahl);
-                        }
+                   System.out.println("Gewinnzahlen: " + Arrays.toString(numbers.toArray()));
+                   System.out.println("Versuch: " + i + " an Stelle: " + digit );
+                   System.out.println("Versuchszahlen: " + Arrays.toString(lottoSearch.toArray()));
+
+                    if(lottoSearch.get(digit).equals(numbers.get(digit))) {
+                        System.out.println("FOUND DIGIT on : " + digit);
+                        System.out.println("Versuchszahlen: " + Arrays.toString(lottoSearch.toArray()));
+                        break;
                     }
-                    lottoSearch.set(digit,i);
+                    lottoSearch.set(digit,new Integer(i));
                }
+                if(lottoSearch.equals(numbers)) {
+                    System.out.println("FOUND FINALLY: ");
+                    System.out.println("Gewinnzahlen: " + Arrays.toString(numbers.toArray()));
+                    System.out.println("Versuchszahlen: " + Arrays.toString(lottoSearch.toArray()));
+                }
            }
        }
 }
